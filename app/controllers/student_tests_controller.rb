@@ -13,7 +13,10 @@ class StudentTestsController < ApplicationController
   def create
     @test = Test.find(params[:test_id])
     @student_test = @test.student_tests.create(student_test_params)
+    #p student_test_params
+    p params['1']
     if @student_test.save
+      generate_report
       redirect_to test_completed_path(@test)
     end
   end
@@ -23,11 +26,20 @@ class StudentTestsController < ApplicationController
   end
 
   def you_have_completed
+  end
 
+  def generate_report
+    @test.questions.each do |q|
+      params.each do
+        if params["q.id"] = q.answers.where(correct: true).first.answer
+          p q.answers.where(correct: true).first.answer
+        end
+      end
+    end
   end
   private
 
   def student_test_params
-    params.require(:student_test).permit(:firstname, :lastname, :group, :html)
+    params.require(:student_test).permit(:firstname, :lastname, :group, :html, :test_id)
   end
 end

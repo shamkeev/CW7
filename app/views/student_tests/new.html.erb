@@ -1,3 +1,4 @@
+
 <h2><%= @test.name %></h2>
 <p><%= @test.description %></p>
 <hr>
@@ -28,17 +29,18 @@
             <%= question.question %>
             <br>
             <% question.answers.each do |answer|%>
-                <%= radio_button_tag(question, answer.answer) %>
-                <%= label_tag(question, answer.answer) %>
+                <%= radio_button_tag(question.id, answer.answer) %>
+                <%= label_tag(question.id, answer.answer) %>
                 <br>
             <% end %>
           </div>
       <% end %>
     </div>
 
+    <div id="btn" class="btn btn-danger">Save</div>
 
     <hr>
     <div class="actions">
-      <%= f.submit 'Finish test'%>
+      <%= f.submit 'Finish test', class: 'btn btn-default'%>
     </div>
 <% end %>
