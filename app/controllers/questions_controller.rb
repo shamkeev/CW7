@@ -5,17 +5,18 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    @questions = Question.where(test: @test)
   end
 
   # GET /questions/1
   # GET /questions/1.json
   def show
+    @answers = Answer.where(question: @question)
   end
 
   # GET /questions/new
   def new
-    @question = Question.new
+    @question = @test.questions.build
   end
 
   # GET /questions/1/edit
@@ -25,7 +26,7 @@ class QuestionsController < ApplicationController
   # POST /questions
   # POST /questions.json
   def create
-    @question = Question.new(question_params)
+    @question = @test.questions.create(question_params) #.new(question_params)
 
     respond_to do |format|
       if @question.save
@@ -57,7 +58,7 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to test_questions_path(@test), notice: 'Question was successfully destroyed.' }
+      format.html { redirect_to test_path(@test), notice: 'Question was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -74,6 +75,6 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:question)
+      params.require(:question).permit(:question, :test_id)
     end
 end
