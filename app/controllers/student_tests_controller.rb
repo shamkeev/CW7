@@ -31,7 +31,7 @@ class StudentTestsController < ApplicationController
   def generate_report
     @test.questions.each do |q|
       params.each do
-        if params["q.id"] = q.answers.where(correct: true).first.answer
+        if params["q.id"] == q.answers.where(correct: true).first.answer
           p q.answers.where(correct: true).first.answer
         end
       end
