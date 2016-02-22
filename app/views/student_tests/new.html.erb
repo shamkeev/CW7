@@ -33,11 +33,11 @@
 
     <hr>
     <h3>Questions</h3>
-
+    <% count = 0 %>
     <div id="student_answers">
       <% @test.questions.each do |question|%>
           <div class="well">
-            <%= question.question %>
+            <%= count += 1 %>) <%= question.question %>
             <br>
             <% question.answers.each do |answer|%>
                 <%= radio_button_tag(question.id, answer.answer) %>
@@ -48,10 +48,11 @@
       <% end %>
     </div>
 
-    <div id="btn" class="btn btn-danger">Save</div>
 
     <hr>
     <div class="actions">
       <%= f.submit 'Finish test', class: 'btn btn-default'%>
     </div>
+
+    <br>
 <% end %>

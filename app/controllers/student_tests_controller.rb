@@ -18,6 +18,8 @@ class StudentTestsController < ApplicationController
     if @student_test.save
       generate_report
       redirect_to test_completed_path(@test)
+    else
+      render 'new'
     end
   end
 
