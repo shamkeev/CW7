@@ -10,6 +10,7 @@ class TestsController < ApplicationController
   # GET /tests/1
   # GET /tests/1.json
   def show
+    @questions = Question.where(test: @test)
   end
 
   # GET /tests/new

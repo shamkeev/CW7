@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Test:</strong>
   <%= @test.name %>
 </p>
 
@@ -10,5 +10,35 @@
   <%= @test.description %>
 </p>
 
-<%= link_to 'Edit', edit_test_path(@test) %> |
-<%= link_to 'Back', tests_path %>
+<%= link_to 'Edit', edit_test_path(@test), class:'btn btn-warning btn-sm' %> |
+<%= link_to 'Back', tests_path, class:'btn btn-danger btn-sm' %> |
+<%= link_to 'New Question', new_test_question_path(@test), class:'btn btn-primary btn-sm'%>
+
+<hr>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Questions for this test:
+  </div>
+	<div class="panel-body">
+	   <table class="table table-hover">
+	   	<thead>
+	   		<tr>
+	   			<th>Question</th>
+	   			<th>Answers</th>
+	   			<th colspan="2">Actions</th>
+	   		</tr>
+	   	</thead>
+	   	<tbody>
+      <% @questions.each do |question|%>
+          <tr>
+            <td><%= link_to question.question, test_question_path(@test, question) %></td>
+            <td><%= question.answers.count %></td>
+            <td><%= link_to 'Edit', edit_test_question_path(@test, question), class:'btn btn-sm btn-warning'%></td>
+            <td><%= link_to 'Edit', test_question_path(@test, question), method: :delete, data:{confirm:'Are you sure?'},class:'btn btn-sm btn-danger'%></td>
+          </tr>
+      <% end %>
+	   	</tbody>
+	   </table>
+	</div>
+</div>
