@@ -18,17 +18,17 @@
     <% end %>
     <div class="field">
       <%= f.label :firstname %><br>
-      <%= f.text_field :firstname %>
+      <%= f.text_field :firstname, required: true %>
     </div>
 
     <div class="field">
       <%= f.label :lastname %><br>
-      <%= f.text_field :lastname %>
+      <%= f.text_field :lastname, required: true%>
     </div>
 
     <div class="field">
       <%= f.label :group %><br>
-      <%= f.text_field :group %>
+      <%= f.text_field :group, required: true%>
     </div>
 
     <hr>
