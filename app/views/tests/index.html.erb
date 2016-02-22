@@ -9,7 +9,7 @@
       <th>Link</th>
       <th>Questions count</th>
       <th>Results count</th>
-      <th colspan="2"></th>
+      <th colspan="2">Actions</th>
     </tr>
   </thead>
 
@@ -18,7 +18,7 @@
       <tr>
         <td><%= link_to test.name, test %></td>
         <td><a href="">Copy link</a></td>
-        <td><%= test.questions.count %></td>
+        <td><%= link_to test.questions.count, test %></td>
         <td>25</td>
         <td><%= link_to 'Edit', edit_test_path(test) %></td>
         <td><%= link_to 'Destroy', test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
