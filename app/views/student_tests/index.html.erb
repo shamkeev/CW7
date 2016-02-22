@@ -1,0 +1,28 @@
+<div class="well">
+  <h2>Results for test: <%= @test.name %></h2>
+</div>
+
+<hr>
+<div class="panel panel-default">
+	<div class="panel-body">
+	   <table class="table table-hover">
+	   	<thead>
+	   		<tr>
+	   			<th>Student</th>
+	   			<th>Correct</th>
+	   			<th>View Report</th>
+	   			<th>Delete</th>
+	   		</tr>
+	   	</thead>
+	   	<tbody>
+	   		<% @student_tests.each do |st|%>
+          <tr>
+            <td><%= st.firstname%> <%= st.lastname%> <%= st.group%></td>
+            <td>19/12</td>
+            <td>View</td>
+          </tr>
+	   		<% end %>
+	   	</tbody>
+	   </table>
+	</div>
+</div>

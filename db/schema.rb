@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222062407) do
+ActiveRecord::Schema.define(version: 20160222102944) do
 
   create_table "answers", force: :cascade do |t|
     t.string   "answer"
@@ -31,6 +31,27 @@ ActiveRecord::Schema.define(version: 20160222062407) do
   end
 
   add_index "questions", ["test_id"], name: "index_questions_on_test_id"
+
+  create_table "student_tests", force: :cascade do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "group"
+    t.text     "html"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "test_id"
+  end
+
+  add_index "student_tests", ["test_id"], name: "index_student_tests_on_test_id"
+
+  create_table "test_reports", force: :cascade do |t|
+    t.integer  "student_test_id"
+    t.text     "html"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "test_reports", ["student_test_id"], name: "index_test_reports_on_student_test_id"
 
   create_table "tests", force: :cascade do |t|
     t.string   "name"

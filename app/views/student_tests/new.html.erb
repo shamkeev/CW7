@@ -1,0 +1,44 @@
+<h2><%= @test.name %></h2>
+<p><%= @test.description %></p>
+<hr>
+
+<%= form_for [@test, @student_test] do |f| %>
+
+    <div class="field">
+      <%= f.label :firstname %><br>
+      <%= f.text_field :firstname %>
+    </div>
+
+    <div class="field">
+      <%= f.label :lastname %><br>
+      <%= f.text_field :lastname %>
+    </div>
+
+    <div class="field">
+      <%= f.label :group %><br>
+      <%= f.text_field :group %>
+    </div>
+
+    <hr>
+    <h3>Questions</h3>
+
+    <div id="student_answers">
+      <% @test.questions.each do |question|%>
+          <div class="well">
+            <%= question.question %>
+            <br>
+            <% question.answers.each do |answer|%>
+                <%= radio_button_tag(question, answer.answer) %>
+                <%= label_tag(question, answer.answer) %>
+                <br>
+            <% end %>
+          </div>
+      <% end %>
+    </div>
+
+
+    <hr>
+    <div class="actions">
+      <%= f.submit 'Finish test'%>
+    </div>
+<% end %>
